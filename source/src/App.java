@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int m, n;
-
+        System.out.println("PROGRAMA ACKERMANN");
+		Scanner in = new Scanner(System.in);
+		
         System.out.print("Digite o valor de 'm': ");
-        m = Integer.parseInt(in.nextLine());
+        int m = Integer.parseInt(in.nextLine());
 
         System.out.print("Digite o valor de 'n': ");
-        n = Integer.parseInt(in.nextLine());
+        int n = Integer.parseInt(in.nextLine());
 
         System.out.printf("Resultado: %d\n", ackermann(m, n));
 
