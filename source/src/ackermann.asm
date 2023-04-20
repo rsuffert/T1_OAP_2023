@@ -35,8 +35,8 @@ bltz $s1, exit
 la   $t0, n
 sw   $v0, 0($t0)
 
-move $a0, $s1  # movendo 'n' para $a0 (parametro)
-move $a1, $s0  # movendo 'm' para $a1 (parametro)
+move $a0, $s0  # movendo 'm' para $a0 (parametro)
+move $a1, $s1  # movendo 'n' para $a1 (parametro)
 jal  ackermann # chamada da funcao
 move $s2, $v0  # movendo o resultado (retorno) da funcao para $s2
 
