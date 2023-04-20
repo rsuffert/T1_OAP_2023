@@ -38,14 +38,24 @@ move $s2, $v0     # movendo o resultado (retorno) da funcao para $s2
 la   $t0, result  # obtendo o endereco de 'result'
 sw   $s2, 0($t0)  # salvando o resultado na memoria
 
-#print("Resultado: ")
-la $a0, str5
-li $v0, 4
+#print("A(%d, %d) = %d", m, n, ackermann(m, n))
+la   $a0, str5 # "A("
+li   $v0, 4
 syscall
-
-#print(ackermann(m, n)) (imprimindo o resultado da funcao Ackermann)
 li   $v0, 1
-move $a0, $s2
+move $a0, $s0  # m
+syscall
+li   $v0, 4
+la   $a0, str6 # ", "
+syscall
+li   $v0, 1
+move $a0, $s1  # n
+syscall
+li   $v0, 4
+la   $a0, str7 # ") = "
+syscall
+li   $v0, 1
+move $a0, $s2  # ackermann(m, n)
 syscall
 
 exit:
@@ -101,5 +111,7 @@ str1:		.asciiz "PROGRAMA ACKERMANN\n"
 str2:		.asciiz	"Para qualquer um dos parametros, digite um numero negativo para encerrar:\n"
 str3:		.asciiz "Digite o valor de 'm': " 
 str4:		.asciiz "Digite o valor de 'n': "
-str5:		.asciiz "Resultado: "
+str5:		.asciiz "A("
+str6:       .asciiz ", "
+str7:       .asciiz ") = "
 result:     .word   0
