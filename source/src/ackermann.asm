@@ -20,8 +20,6 @@ li $v0, 5
 syscall
 move $s0, $v0
 bltz $s0, exit
-la   $t0, m
-sw   $v0, 0($t0)
 
 #print("Digite o valor de 'n': ")
 la $a0, str4
@@ -32,20 +30,20 @@ li $v0, 5
 syscall
 move $s1, $v0
 bltz $s1, exit
-la   $t0, n
-sw   $v0, 0($t0)
 
-move $a0, $s0  # movendo 'm' para $a0 (parametro)
-move $a1, $s1  # movendo 'n' para $a1 (parametro)
-jal  ackermann # chamada da funcao
-move $s2, $v0  # movendo o resultado (retorno) da funcao para $s2
+move $a0, $s0     # movendo 'm' para $a0 (parametro)
+move $a1, $s1     # movendo 'n' para $a1 (parametro)
+jal  ackermann    # chamada da funcao
+move $s2, $v0     # movendo o resultado (retorno) da funcao para $s2
+la   $t0, result  # obtendo o endereco de 'result'
+sw   $s2, 0($t0)  # salvando o resultado na memoria
 
 #print("Resultado: ")
 la $a0, str5
 li $v0, 4
 syscall
 
-#print(ackermann(m, n))
+#print(ackermann(m, n)) (imprimindo o resultado da funcao Ackermann)
 li   $v0, 1
 move $a0, $s2
 syscall
@@ -99,10 +97,9 @@ addi $sp, $sp, 16
 jr   $ra
 
 .data
-n:		.word 0 			
-m:		.word 0
 str1:		.asciiz "PROGRAMA ACKERMANN\n"
 str2:		.asciiz	"Para qualquer um dos parametros, digite um numero negativo para encerrar:\n"
 str3:		.asciiz "Digite o valor de 'm': " 
 str4:		.asciiz "Digite o valor de 'n': "
 str5:		.asciiz "Resultado: "
+result:     .word   0
